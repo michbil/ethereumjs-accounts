@@ -31,6 +31,7 @@ var BigNumber = require('bignumber.js');
 var JSZip = require("jszip");
 var FileSaver = require("node-safe-filesaver");
 var crypto = require('crypto');
+var ethUtil = require('ethereumjs-util')
 global.CryptoJS = require('browserify-cryptojs');
 require('browserify-cryptojs/components/enc-base64');
 require('browserify-cryptojs/components/md5');
@@ -42,11 +43,11 @@ var window = {};
 var KeyStore = {
     keys: {}
 };
-KeyStore.Get = function(key) {
+KeyStore.get = function(key) {
     return this.keys[key];
 };
 
-KeyStore.Set = function (key,value,reactive,callback) {
+KeyStore.set = function (key,value,reactive,callback) {
     this.keys[key] = value;
     if (callback) {
         callback();
